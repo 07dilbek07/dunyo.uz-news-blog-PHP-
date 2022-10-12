@@ -23,8 +23,6 @@
         require_once "./db_methods.php";
 
         $newsWorld = getNewsOnWorld();
-
-        
         ?>
 
         <div class="main">
@@ -38,7 +36,7 @@
                         <?php foreach ($newsWorld as $world) : ?>
                             <div class="card">
                                 <div class="img-content">
-                                    <img src="./admin/img/<?= $world['image'] ?>" alt="img"/>
+                                    <img src="./admin/img/<?= $world['image'] ?>" alt="img" />
                                 </div>
                                 <div class="title-content">
                                     <a id="link" href="./page/innerPage.php?category=<?= $world['category'] ?>&id=<?= $world['id'] ?>">

@@ -49,7 +49,6 @@
                         </div>
                     <?php endforeach; ?>
 
-
                     <?php
                     require_once "./inc/footer.php";
                     ?>
