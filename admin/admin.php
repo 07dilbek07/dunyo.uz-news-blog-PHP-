@@ -3,7 +3,7 @@
 <?php
 session_start();
 
-$categoryList = Array("world", "money", "culture", "sport");
+$categoryList = ["world", "money", "culture", "sport"];
 
 ?>
 
