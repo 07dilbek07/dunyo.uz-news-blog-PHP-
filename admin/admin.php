@@ -62,7 +62,7 @@ $categoryList = Array("world", "money", "culture", "sport");
                 </div>
                 <div class="mb-3">
                     <label for="categore" class="form-label">Категория</label>
-                    <select id="categore" name="categ" class="form-select">
+                    <select id="categore" name="cat" class="form-select">
                         <?php
                             foreach($categoryList as $category) {
                                 echo("<option value=$category>$category</option>");
@@ -70,7 +70,7 @@ $categoryList = Array("world", "money", "culture", "sport");
                         ?>
                     </select>
                     <div class="invalid-author">
-                        <p class="text-danger"> <?= $_SESSION['err_categ'] ?? "" ?></p>
+                        <p class="text-danger"> <?= $_SESSION['err_cat'] ?? "" ?></p>
                     </div> 
                 </div>
 
