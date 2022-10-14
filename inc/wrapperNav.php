@@ -1,6 +1,6 @@
 <?php
     
-    $categor = categoryWrapper();
+    $categor = getCategoryWrapper();
     ?>
 <div id="wrapper">
     <div class="scrollbar" id="style-2">

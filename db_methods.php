@@ -15,7 +15,7 @@ function getNewsOnWorld() {
     return $infoWorld;
 }
 
-function categoryWrapper() {  
+function getCategoryWrapper() {  
     global $db; 
     if($query = $db->query("SELECT * FROM `news-blog` WHERE category < 1  ORDER BY id DESC " )) {
         $categoryNav = $query->fetchAll(PDO::FETCH_ASSOC);
