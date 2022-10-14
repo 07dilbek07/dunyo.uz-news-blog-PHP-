@@ -28,6 +28,10 @@ function errorAlert()
         $_SESSION['error_conPass'] = "Пароли должны совпадать !";
         redirect();
     }
+
+
+    $password = md5($password);
+    $confirmPass = md5($confirmPass);
 }
 
 function sendDate() {
@@ -60,10 +64,8 @@ $_SESSION['email'] = $email;
 
 
 
-
 errorAlert();
-$password = md5($password);
-$confirmPass = md5($confirmPass);
+
 
 
 
