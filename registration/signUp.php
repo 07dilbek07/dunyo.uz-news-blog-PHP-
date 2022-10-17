@@ -24,7 +24,7 @@
 
             <div class="login-box reg-box" >
                 <h2>Регистратция</h2>
-                <form action="./validation/check.php" method="post" enctype="multipart/form-data">
+                <form action="./validation/regis.php" method="post" enctype="multipart/form-data">
                     <div class="user-box">
                         <input type="text" name="name" value="<?=$_SESSION['name'] ?? "";?>">
                         <label>Имя</label>

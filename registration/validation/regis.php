@@ -67,16 +67,13 @@ $_SESSION['email'] = $email;
 errorAlert();
 
 
-
-
 try {
     $db = new PDO("mysql:host=localhost;dbname=daryoblog", "root", "root");
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
+
 sendDate();
-
-
 
 
 $_SESSION['sign_up'] = [
