@@ -22,6 +22,3 @@ if($_SESSION['alert-success'] = true) {
 
 header('Location: ../formContact.php');
 ?>
-
-<h3><?= $email ?></h3>
-<h3><?= $message ?></h3>
