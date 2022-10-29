@@ -13,12 +13,10 @@
 
 <body>
     <div class="web_size">
-
         <section>
             <?php
             require_once "../inc/header.php";
             ?>
-
             <div class="login-box">
                 <h2>Войти</h2>
                 <form action="./validation/auth.php" method="post" enctype="multipart/form-data">
@@ -44,8 +42,5 @@
             </div>
         </section>
     </div>
-
-
 </body>
-
 </html>

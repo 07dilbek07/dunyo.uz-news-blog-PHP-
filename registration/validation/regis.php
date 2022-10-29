@@ -62,8 +62,6 @@ $_SESSION['name'] = $name;
 $_SESSION['surname'] = $surname;
 $_SESSION['email'] = $email;
 
-
-
 errorAlert();
 
 
@@ -74,7 +72,6 @@ try {
 }
 
 sendDate();
-
 
 $_SESSION['sign_up'] = [
     "id" => $db->lastInsertId(),

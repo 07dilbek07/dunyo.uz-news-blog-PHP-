@@ -23,8 +23,6 @@ function getCategoryWrapper() {
     return $categoryNav;
 }
 
-
-
 function getNewsByCategory($category) {
     global $db;
     if($query = $db->query("SELECT * FROM `news-blog` WHERE category='$category' ORDER BY id  DESC LIMIT 10")) {
@@ -33,8 +31,6 @@ function getNewsByCategory($category) {
 
     return $news;
 }
-
-
 
 function getCategoryAndIdArticle($category , $id) {
     global $db;

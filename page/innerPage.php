@@ -21,12 +21,9 @@
 
         $category = $_GET['category'];
         $id = $_GET['id'];
-
         $article = getCategoryAndIdArticle($category , $id);
-
         $article = $article[0];
         ?>
-
         <div class="main">
             <div class="contanier">
                 <?php
@@ -48,11 +45,9 @@
                         
                         <h4 class="page_text"><?= $article['description']?> <br> </h4>
                     </section>
-
                     <?php
                     require_once("../inc/footer.php");
                     ?>
-
                 </main>
             </div>
         </div>

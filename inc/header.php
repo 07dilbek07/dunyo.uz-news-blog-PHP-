@@ -3,7 +3,6 @@
         <a href="../index.php" class="logo_phonetik">
             <img class="logo" src="../image/Vector.png">
         </a>
-
         <nav class="nav">
             <ul class="nav-list">
                 <li>

@@ -14,7 +14,6 @@
 		
 
 	</div>
-
 	<div class="footer-right">
 
 		<p class="footer-company-about">
@@ -29,7 +28,5 @@
 			<a id = "social" href="https://github.com/07dilbek07"><img id="ins" src="../image/github.png"></a>
 
 		</div>
-
 	</div>
-
 </footer>

@@ -1,7 +1,6 @@
 <?php
     session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,8 +64,5 @@
             </div>
         </section>
     </div>
-
-
 </body>
-
 </html>

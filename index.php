@@ -24,7 +24,6 @@
 
         $newsWorld = getNewsOnWorld();
         ?>
-
         <div class="main">
             <div class="contanier">
                 <?php
@@ -46,7 +45,6 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-
                     <?php
                     require_once "./inc/footer.php";
                     ?>
@@ -55,5 +53,4 @@
         </div>
     </div>
 </body>
-
 </html>

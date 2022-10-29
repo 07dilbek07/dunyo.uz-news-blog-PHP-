@@ -62,12 +62,10 @@ function PanelHeaderError()
     exit;
 };
 
-
 $titles = htmlspecialchars(trim($_POST['titles']));
 $shortBody = htmlspecialchars(trim($_POST['shortBody']));
 $bodyDes = htmlspecialchars(trim($_POST['body']));
 $cat = htmlspecialchars(trim($_POST['cat']));
-
 
 $_SESSION['titles'] = $titles;
 $_SESSION['shortBody'] = $shortBody;
@@ -77,16 +75,12 @@ errAlert();
 
 imgUpload();
 
-
-
 try {
     $db = new PDO("mysql:host=localhost;dbname=dunyoblog", "root", "root");
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
 setDateSendBase();
-
-
 
 if ($_SESSION['success'] = true) {
     unset($_SESSION['titles']);

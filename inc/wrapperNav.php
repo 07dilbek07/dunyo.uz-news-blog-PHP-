@@ -1,5 +1,4 @@
 <?php
-    
     $categor = getCategoryWrapper();
     ?>
 <div id="wrapper">

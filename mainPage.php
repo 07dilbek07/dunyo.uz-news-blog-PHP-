@@ -23,7 +23,6 @@
 
         $category = $_GET['category'];
         $news = getNewsByCategory($category);
-
         ?>
 
         <div class="main">
@@ -48,15 +47,12 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
-
                     <?php
                     require_once "./inc/footer.php";
                     ?>
-
                 </main>
             </div>
         </div>
     </div>
 </body>
-
 </html>

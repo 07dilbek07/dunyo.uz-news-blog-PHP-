@@ -2,9 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <?php
 session_start();
-
 $categoryList = ["world", "money", "culture", "sport"];
-
 ?>
 
 <!DOCTYPE html>
@@ -24,12 +22,10 @@ $categoryList = ["world", "money", "culture", "sport"];
     </section>
     <main><br>
         <div class="container d-flex flex-column align-items-center">
-
             <?php if (isset($_SESSION['success'])) { ?>
                 <div class='alert alert-secondary' role='alert'>
                     Данные успешно загружен
                 </div>
-                                
             <?php } unset($_SESSION['success']);?>
 
             <form action="./post.php" method="POST" enctype="multipart/form-data" class="w-75">
@@ -74,9 +70,6 @@ $categoryList = ["world", "money", "culture", "sport"];
                         <p class="text-danger"> <?= $_SESSION['err_cat'] ?? "" ?></p>
                     </div> 
                 </div>
-
-
-
                 <div class="mb-3">
                     <input type="submit" name="submit" value="Submit" class="btn btn-dark w-100">
                 </div>
