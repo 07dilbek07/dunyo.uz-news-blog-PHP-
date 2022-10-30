@@ -7,6 +7,27 @@ unset($_SESSION['error_email']);
 unset($_SESSION['error_pass']);
 unset($_SESSION['error_conPass']);
 
+function sendDate() {
+    global $name , $surname , $email ,  $password , $confirmPass;
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = htmlspecialchars(trim($_POST['name']));
+        $surname = htmlspecialchars(trim($_POST['surname']));
+        $email = htmlspecialchars(trim($_POST['email']));
+        $password = htmlspecialchars(trim($_POST['password']));
+        $confirmPass = htmlspecialchars(trim($_POST['confirmPass']));
+    }
+
+    $_SESSION['name'] = $name;
+    $_SESSION['surname'] = $surname;
+    $_SESSION['email'] = $email;
+    
+    errorAlert();
+
+    $password = md5($password);
+    $confirmPass = md5($confirmPass);
+}
+
 
 function errorAlert()
 {
@@ -28,20 +49,6 @@ function errorAlert()
         $_SESSION['error_conPass'] = "Пароли должны совпадать !";
         redirect();
     }
-
-
-    $password = md5($password);
-    $confirmPass = md5($confirmPass);
-}
-
-function sendDate() {
-    global $db , $name , $surname , $email , $password , $confirmPass;
-    $sql = "INSERT INTO `registration` (`name` , `surname` , `email` , `password` , `confirmPassword`) VALUES ('$name' , '$surname' , '$email' , '$password' , '$confirmPass')";
-    
-    $query = $db->query($sql);
-    $sign_up = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    return $sign_up;
 }
 
 function redirect()
@@ -50,19 +57,17 @@ function redirect()
     exit;
 }
 
+function getDateBase() {
+    global $db , $name , $surname , $email , $password , $confirmPass;
+    $sql = "INSERT INTO `registration` (`name` , `surname` , `email` , `password` , `confirmPassword`) VALUES ('$name' , '$surname' , '$email' , '$password' , '$confirmPass')";
+    
+    $query = $db->query($sql);
+    $sign_up = $query->fetchAll(PDO::FETCH_ASSOC);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars(trim($_POST['name']));
-    $surname = htmlspecialchars(trim($_POST['surname']));
-    $email = htmlspecialchars(trim($_POST['email']));
-    $password = htmlspecialchars(trim($_POST['password']));
-    $confirmPass = htmlspecialchars(trim($_POST['confirmPass']));
+    return $sign_up;
 }
-$_SESSION['name'] = $name;
-$_SESSION['surname'] = $surname;
-$_SESSION['email'] = $email;
+sendDate();
 
-errorAlert();
 
 
 try {
@@ -71,7 +76,7 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
-sendDate();
+getDateBase();
 
 $_SESSION['sign_up'] = [
     "id" => $db->lastInsertId(),
