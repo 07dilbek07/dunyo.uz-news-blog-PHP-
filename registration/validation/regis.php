@@ -18,21 +18,22 @@ function sendDate() {
         $confirmPass = htmlspecialchars(trim($_POST['confirmPass']));
     }
 
-    $_SESSION['name'] = $name;
-    $_SESSION['surname'] = $surname;
-    $_SESSION['email'] = $email;
+    infoFronzen($name , $surname , $email);
     
-    errorAlert();
+    errorAlert($name, $surname, $email, $password, $confirmPass);
 
     $password = md5($password);
     $confirmPass = md5($confirmPass);
 }
 
+function infoFronzen($name , $surname , $email) {
+    $_SESSION['name'] = $name;
+    $_SESSION['surname'] = $surname;
+    $_SESSION['email'] = $email;
+}
 
-function errorAlert()
+function errorAlert($name, $surname, $email, $password, $confirmPass)
 {
-    global $name, $surname, $email, $password, $confirmPass;
-
     if (mb_strlen($name) <= 1) {
         $_SESSION['error_name'] = "Введите корректное имя !";
         redirect();
@@ -57,8 +58,8 @@ function redirect()
     exit;
 }
 
-function getDateBase() {
-    global $db , $name , $surname , $email , $password , $confirmPass;
+function getDateBase($name , $surname , $email , $password , $confirmPass) {
+    global $db;
     $sql = "INSERT INTO `registration` (`name` , `surname` , `email` , `password` , `confirmPassword`) VALUES ('$name' , '$surname' , '$email' , '$password' , '$confirmPass')";
     
     $query = $db->query($sql);
@@ -66,8 +67,9 @@ function getDateBase() {
 
     return $sign_up;
 }
-sendDate();
 
+
+sendDate();
 
 
 try {
@@ -76,7 +78,7 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
-getDateBase();
+getDateBase($name , $surname , $email , $password , $confirmPass);
 
 $_SESSION['sign_up'] = [
     "id" => $db->lastInsertId(),

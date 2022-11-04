@@ -8,6 +8,22 @@ unset($_SESSION['err_bodyDes']);
 unset($_SESSION['err_cat']);
 unset($_SESSION['success']);
 
+function sendNewsDatabases() {
+    global $titles , $shortBody , $bodyDes , $cat; 
+
+    $titles = htmlspecialchars(trim($_POST['titles']));
+    $shortBody = htmlspecialchars(trim($_POST['shortBody']));
+    $bodyDes = htmlspecialchars(trim($_POST['body']));
+    $cat = htmlspecialchars(trim($_POST['cat']));
+
+    dateFrozen($titles , $shortBody , $bodyDes);
+
+    errAlert($titles, $shortBody, $bodyDes, $cat);
+    
+    imgUpload();
+}
+
+
 function setDateSendBase()
 {
     global $db, $titles, $shortBody, $imageUpload, $bodyDes, $cat;
@@ -17,10 +33,8 @@ function setDateSendBase()
     $stmt->execute(['titles' => $titles, 'shortBody' => $shortBody, 'imageUpload' => $imageUpload, 'bodyDes' => $bodyDes, 'cat' => $cat]);
 };
 
-function errAlert()
+function errAlert($titles, $shortBody, $bodyDes, $cat)
 {
-    global $titles, $shortBody, $bodyDes, $cat;
-
     if ($titles == "") {
         $_SESSION['err_titles'] = "Требуется заголовок";
         PanelHeaderError();
@@ -62,25 +76,23 @@ function PanelHeaderError()
     exit;
 };
 
-$titles = htmlspecialchars(trim($_POST['titles']));
-$shortBody = htmlspecialchars(trim($_POST['shortBody']));
-$bodyDes = htmlspecialchars(trim($_POST['body']));
-$cat = htmlspecialchars(trim($_POST['cat']));
 
-$_SESSION['titles'] = $titles;
-$_SESSION['shortBody'] = $shortBody;
-$_SESSION['body'] = $bodyDes;
+function dateFrozen($titles , $shortBody , $bodyDes) {
+    $_SESSION['titles'] = $titles;
+    $_SESSION['shortBody'] = $shortBody;
+    $_SESSION['body'] = $bodyDes;
+}
 
-errAlert();
+$sendDate = sendNewsDatabases();
 
-imgUpload();
 
 try {
     $db = new PDO("mysql:host=localhost;dbname=dunyoblog", "root", "root");
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
-setDateSendBase();
+
+setDateSendBase($sendDate);
 
 if ($_SESSION['success'] = true) {
     unset($_SESSION['titles']);

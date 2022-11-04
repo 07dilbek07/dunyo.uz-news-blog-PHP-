@@ -41,5 +41,3 @@ function getCategoryAndIdArticle($category , $id) {
     
     return $page;
 }
-
-

@@ -22,8 +22,8 @@ function getAuthDateBase()
 
     return $sign_in;
 }
-
 $dateUser = getAuthDateBase();
+
 if (count($dateUser) == '0') {
 
     $_SESSION['err'] = "Такой пользователь не найдено !";
