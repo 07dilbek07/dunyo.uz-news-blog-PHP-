@@ -52,10 +52,19 @@ class NewsDbBasePDO
 
     function setDataSendBase($titles, $shortBody, $imageUpload, $bodyDes, $cat)
     {
-
         $sql = "INSERT INTO `news-blog` (title , shortDescription , image , description , category) VALUES (:titles, :shortBody , :imageUpload, :bodyDes , :cat)";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['titles' => $titles, 'shortBody' => $shortBody, 'imageUpload' => $imageUpload, 'bodyDes' => $bodyDes, 'cat' => $cat]);
     }
 
+    function succes()
+    {
+        if ($_SESSION['success'] = true) {
+            unset($_SESSION['titles']);
+            unset($_SESSION['shortBody']);
+            unset($_SESSION['body']);
+            unset($_SESSION['cat']);
+        }
+        header("Location: ./admin.php");
+    }
 }
