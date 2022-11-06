@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "../db_methods.php";
 
 unset($_SESSION['err_titles']);
 unset($_SESSION['err_shortBody']);
@@ -8,30 +9,24 @@ unset($_SESSION['err_bodyDes']);
 unset($_SESSION['err_cat']);
 unset($_SESSION['success']);
 
-function sendNewsDatabases() {
-    global $titles , $shortBody , $bodyDes , $cat; 
+
+function sendNewsDataBase()
+{
+    global $imageUpload;
 
     $titles = htmlspecialchars(trim($_POST['titles']));
     $shortBody = htmlspecialchars(trim($_POST['shortBody']));
     $bodyDes = htmlspecialchars(trim($_POST['body']));
     $cat = htmlspecialchars(trim($_POST['cat']));
 
-    dateFrozen($titles , $shortBody , $bodyDes);
 
+    dataFrozen($titles, $shortBody, $bodyDes);
     errAlert($titles, $shortBody, $bodyDes, $cat);
-    
     imgUpload();
+
+    $sendDBandPage = new NewsDbBasePDO();
+    $sendDBandPage->setDataSendBase($titles, $shortBody, $imageUpload, $bodyDes, $cat);
 }
-
-
-function setDateSendBase()
-{
-    global $db, $titles, $shortBody, $imageUpload, $bodyDes, $cat;
-
-    $sql = "INSERT INTO `news-blog` (title , shortDescription , image , description , category) VALUES (:titles, :shortBody , :imageUpload, :bodyDes , :cat)";
-    $stmt = $db->prepare($sql);
-    $stmt->execute(['titles' => $titles, 'shortBody' => $shortBody, 'imageUpload' => $imageUpload, 'bodyDes' => $bodyDes, 'cat' => $cat]);
-};
 
 function errAlert($titles, $shortBody, $bodyDes, $cat)
 {
@@ -75,24 +70,15 @@ function PanelHeaderError()
     header("Location: ./admin.php");
     exit;
 };
-
-
-function dateFrozen($titles , $shortBody , $bodyDes) {
+function dataFrozen($titles, $shortBody, $bodyDes)
+{
     $_SESSION['titles'] = $titles;
     $_SESSION['shortBody'] = $shortBody;
     $_SESSION['body'] = $bodyDes;
 }
 
-$sendDate = sendNewsDatabases();
 
-
-try {
-    $db = new PDO("mysql:host=localhost;dbname=dunyoblog", "root", "root");
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-
-setDateSendBase($sendDate);
+sendNewsDataBase();
 
 if ($_SESSION['success'] = true) {
     unset($_SESSION['titles']);

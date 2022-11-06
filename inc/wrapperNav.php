@@ -1,5 +1,6 @@
 <?php
-    $categor = getCategoryWrapper();
+    $leftNavCat = new NewsDbBasePDO();
+    $navLCat = $leftNavCat->getCategoryLeftNav();
     ?>
 <div id="wrapper">
     <div class="scrollbar" id="style-2">
@@ -7,7 +8,7 @@
             <div class="nav-object">
                 <h3>Последние новости</h3>
             </div>
-            <?php foreach($categor as $itemCategor) :?>
+            <?php foreach($navLCat as $itemCategor) :?>
                 <div class="list">
                     <ul class="ul-list">
                         <li id="li">

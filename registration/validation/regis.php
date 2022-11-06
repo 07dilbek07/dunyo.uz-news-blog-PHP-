@@ -7,8 +7,10 @@ unset($_SESSION['error_email']);
 unset($_SESSION['error_pass']);
 unset($_SESSION['error_conPass']);
 
-function sendDate() {
-    global $name , $surname , $email ,  $password , $confirmPass;
+require_once ("../userDbPDO.php");
+
+
+function sendData() {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = htmlspecialchars(trim($_POST['name']));
@@ -18,15 +20,20 @@ function sendDate() {
         $confirmPass = htmlspecialchars(trim($_POST['confirmPass']));
     }
 
-    infoFronzen($name , $surname , $email);
+    nameAndSnameAndEmailFrozen($name , $surname , $email);
     
     errorAlert($name, $surname, $email, $password, $confirmPass);
 
     $password = md5($password);
     $confirmPass = md5($confirmPass);
+
+    $userDbSignUp = new userDb();
+    $userDbSignUp->getDataBaseRegis($name , $surname , $email , $password , $confirmPass);
+    $userDbSignUp->welcomeUserRegis($name);
+
 }
 
-function infoFronzen($name , $surname , $email) {
+function nameAndSnameAndEmailFrozen($name , $surname , $email) {
     $_SESSION['name'] = $name;
     $_SESSION['surname'] = $surname;
     $_SESSION['email'] = $email;
@@ -58,32 +65,7 @@ function redirect()
     exit;
 }
 
-function getDateBase($name , $surname , $email , $password , $confirmPass) {
-    global $db;
-    $sql = "INSERT INTO `registration` (`name` , `surname` , `email` , `password` , `confirmPassword`) VALUES ('$name' , '$surname' , '$email' , '$password' , '$confirmPass')";
-    
-    $query = $db->query($sql);
-    $sign_up = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    return $sign_up;
-}
-
-
-sendDate();
-
-
-try {
-    $db = new PDO("mysql:host=localhost;dbname=dunyoblog", "root", "root");
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-
-getDateBase($name , $surname , $email , $password , $confirmPass);
-
-$_SESSION['sign_up'] = [
-    "id" => $db->lastInsertId(),
-    "name" => $name,
-];
+sendData();
 header("Location: ./welcome/welcome.php");
 $db = null;
 

@@ -21,7 +21,8 @@
 
         $category = $_GET['category'];
         $id = $_GET['id'];
-        $article = getCategoryAndIdArticle($category , $id);
+        $articlePage = new NewsDbBasePDO();
+        $article = $articlePage->getCategoryAndIdArticle($category , $id);
         $article = $article[0];
         ?>
         <div class="main">

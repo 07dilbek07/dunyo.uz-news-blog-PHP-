@@ -21,8 +21,8 @@
         <?php
         require_once "./inc/header.php";
         require_once "./db_methods.php";
-
-        $newsWorld = getNewsOnWorld();
+        $newsWorld = new NewsDbBasePDO();
+        $newsW = $newsWorld->getNewsOnWorld();
         ?>
         <div class="main">
             <div class="contanier">
@@ -32,7 +32,7 @@
 
                 <main class="main-cont">
                     <div class="grid-content">
-                        <?php foreach ($newsWorld as $world) : ?>
+                        <?php foreach ($newsW as $world) : ?>
                             <div class="card">
                                 <div class="img-content">
                                     <img src="./admin/img/<?= $world['image'] ?>" alt="img" />

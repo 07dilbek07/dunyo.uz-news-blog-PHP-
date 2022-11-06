@@ -22,7 +22,8 @@
         require_once "./db_methods.php";
 
         $category = $_GET['category'];
-        $news = getNewsByCategory($category);
+        $mainNewsCat = new NewsDbBasePDO();
+        $newsMain = $mainNewsCat->getNewsByCategory($category);
         ?>
 
         <div class="main">
@@ -33,7 +34,7 @@
 
                 <main class="main-cont">
                     <?php
-                    foreach ($news as $newInfo) : ?>
+                    foreach ($newsMain as $newInfo) : ?>
                         <div class="category-blog">
                             <div class="cat-box1">
                                 <a id="href" href=""><?= $newInfo['category'] ?></a><br>

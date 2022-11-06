@@ -82,7 +82,6 @@ CREATE TABLE `registration` (
 
 INSERT INTO `registration` (`id`, `name`, `surname`, `email`, `password`, `confirmPassword`) VALUES
 (1, 'Dilbek', 'Dustmurodov', 'dilbekdustmurodov@gmail.com', '5bb34d457469c3ca93e2f1dc98136e47', '5bb34d457469c3ca93e2f1dc98136e47'),
-(2, 'Kumush', 'Ahmedova', 'kumushahmedova@gmail.com', '109e04284b59f387cc28921d3b6c821b', '109e04284b59f387cc28921d3b6c821b'),
 (3, 'Olmos', 'Dustmurodov', 'olmosdustmurodov@gmail.com', 'b0c321eeb095d9ae4e608a71dd05e16a', 'b0c321eeb095d9ae4e608a71dd05e16a'),
 (4, 'Azizbek', 'Rahmonqulov', 'azizrahmonqulov@gmail.com', '2e30d9b9351398e7031d322c66d759da', '2e30d9b9351398e7031d322c66d759da'),
 (5, 'Ozodbek', 'Najimov', 'ozodbeknajimov2001@gmail.com', '109e04284b59f387cc28921d3b6c821b', '109e04284b59f387cc28921d3b6c821b'),
