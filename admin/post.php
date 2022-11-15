@@ -27,9 +27,19 @@ function sendNewsDataBase()
 
     $sendDBandPage = new NewsDbBasePDO();
     $sendDBandPage->setDataSendBase($titles, $shortBody, $imageUpload, $bodyDes, $cat);
-    $sendDBandPage->succes();
+    
+    succes();
+}
+function succes()
+{
+    if ($_SESSION['success'] = true) {
+        unset($_SESSION['titles']);
+        unset($_SESSION['shortBody']);
+        unset($_SESSION['body']);
+        unset($_SESSION['cat']);
+    }
+    header("Location: ./admin.php");
 }
 
+
 sendNewsDataBase();
-
-
