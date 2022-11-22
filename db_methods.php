@@ -6,11 +6,15 @@ class NewsDbBasePDO
 
     function __construct()
     {
-        $this->db = new PDO("mysql:host=localhost; dbname=dunyoblog", "root", "root");
+        try {
+            $this->db = new PDO("mysql:host=localhost; dbname=dunyoblog", "root", "root");
+        } catch (PDOException $e) {
+            echo "<br><br><br><br><br>";
+            echo "<h1>Error connection database!</h1>";
+        }
     }
 
     // ------------GETTING INFO FROM DB
-
     function getNewsOnWorld()
     {
         if ($query = $this->db->query("SELECT * FROM `news-blog` WHERE category='world' ORDER BY id DESC LIMIT 9 ")) {
@@ -56,5 +60,4 @@ class NewsDbBasePDO
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['titles' => $titles, 'shortBody' => $shortBody, 'imageUpload' => $imageUpload, 'bodyDes' => $bodyDes, 'cat' => $cat]);
     }
-
 }

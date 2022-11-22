@@ -7,7 +7,12 @@ class userDb
 
     function __construct()
     {
-        $this->db = new PDO("mysql:host=localhost;dbname=dunyoblog", "root", "root");
+        try{
+            $this->db = new PDO("mysql:host=localhost; dbname=dunyoblog", "root", "root");
+        } catch(PDOException $e) {
+            echo "<br><br><br><br><br>";
+            echo "<h1>Error connection database!</h1>";
+        }
     }
 
     // SignUp
